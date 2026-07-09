@@ -1,9 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
 
+import dao.ProductDaoDB;
 import dao.UserDaoDB;
 
 /**
@@ -45,20 +47,48 @@ public class Operation {
 	private boolean authenticate(String userId, String password) {
 
 		// ★ここでは password = "pass" であれば true とする
-		boolean result = password.equals(userDao);
-		if (userDao.getUser(userId) = password) {
+		boolean result = false;
+		/*if (password.equals("pass")) {
+			result = true;
+		}*/
+		//userDaoを使ってUserを検索して、Userを取得
+		User user = userDao.getUser(userId);
+		//Userがある場合
+		if (user != null) {
+			//パスワードを照合（入力値と登録されているパスワードが一致するか確認）
+			if (password.equals(user.getPassWord())) {
+				return true;
+			}
 		}
+		//Userがない場合
+		//false（認証NG）
+
+		if (user == null) {
+			return false;
+		}
+
 		return result;
 	}
+	/*
+	if (userDao.getUser(userId) = password) {
+	*/
 
 	/**
 	 * 店舗情報（店舗名＋選択データ（リスト））を作成する
 	 * @return 店舗情報
 	 */
 	private Store makeStore() {
+		//Productテーブルから商品を検索して取得する
+
+		List<Product> productList = productDao.getProductList();
 
 		// 店舗情報作成
-		Store store = new Store("USAHANA PC SHOP", new ArrayList<Product>());
+		Store store = new Store("USAHANA ICE CREAM SHOP", new ArrayList<Product>());
+
+		for (Product product : productList) {
+			store.add(product);
+		}
+		/*
 
 		// 商品追加
 		store.add(new Product("A110", "無線マウス", 2000));
@@ -71,8 +101,11 @@ public class Operation {
 		store.add(new Product("A180", "小型ディスプレイ", 11000));
 		store.add(new Product("A190", "LED照明", 4200));
 		store.add(new Product("A200", "骨伝導イヤホン", 7800));
-
+*/
 		return store;
+
+		//商品追加の置き換え
+
 	}
 
 	/**
@@ -88,8 +121,8 @@ public class Operation {
 	/**
 	 * 商品追加処理
 	 * @param idx　商品一覧の選択した商品のidx（セッション：store内）
-	 * @param session　セッションオブジェクト
-	 */
+	 * @param session　セッションオブジェクト*/
+
 	public void addProd(int idx, HttpSession session) {
 		// 店舗情報・カート情報の取得（セッションより）
 		Store store = (Store) session.getAttribute("store");
@@ -137,9 +170,12 @@ public class Operation {
 
 	//UserDaoDBに切り替える
 	private UserDaoDB userDao;
+	private ProductDaoDB productDao;
 
 	public Operation() {
-		userDao = new UserDaoDB("localhost", "3306", "cscdb", "root", "mysql2026");
+		userDao = new UserDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
+
+		productDao = new ProductDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
 	}
 
 }

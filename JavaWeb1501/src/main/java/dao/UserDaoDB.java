@@ -19,6 +19,7 @@ public class UserDaoDB implements UserDao {
  
  
  
+ 
 
 	public UserDaoDB(String database, String host, String port, String userid, String password) {
 	super();
@@ -33,7 +34,7 @@ public class UserDaoDB implements UserDao {
 	public User getUser(String userId) {
 		//データベース接続
 		try (Connection connection = getConnection()) {
-			String sql = "SELECT FROM Users WHERE id = ?"; //ユーザーを取得するSQL
+			String sql = "SELECT * FROM Users WHERE id = ?"; //ユーザーを取得するSQL
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, userId); //ユーザーIDをSQLパラメータに
 			try (ResultSet resultSet = statement.executeQuery()) {
