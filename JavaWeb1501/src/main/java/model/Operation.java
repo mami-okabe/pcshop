@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import jakarta.servlet.http.HttpSession;
 
+import dao.UserDaoDB;
+
 /**
  * 店内オペレーションクラス
  * @author M.Takahashi
@@ -43,8 +45,9 @@ public class Operation {
 	private boolean authenticate(String userId, String password) {
 
 		// ★ここでは password = "pass" であれば true とする
-		boolean result = password.equals("pass");
-
+		boolean result = password.equals(userDao);
+		if (userDao.getUser(userId) = password) {
+		}
 		return result;
 	}
 
@@ -55,7 +58,7 @@ public class Operation {
 	private Store makeStore() {
 
 		// 店舗情報作成
-		Store store = new Store("速水PC販売", new ArrayList<Product>());
+		Store store = new Store("USAHANA PC SHOP", new ArrayList<Product>());
 
 		// 商品追加
 		store.add(new Product("A110", "無線マウス", 2000));
@@ -118,22 +121,25 @@ public class Operation {
 
 	/*精算処理*/
 	public void pay(HttpSession session) {
-		
+
 		//カート内商品情報の取得
 		Cart cart = (Cart) session.getAttribute("cart");
-		
+
 		if (cart != null) {
 			//セッションに格納（精算済みデータ）
 			session.setAttribute("pay", cart);
-			
+
 			//カート情報の新規作成⇒セッションに格納
 			Cart newCart = new Cart(cart.getUserId(), new ArrayList<Product>());
 			session.setAttribute("cart", newCart);
-		
-		}
 		}
 	}
 
+	//UserDaoDBに切り替える
+	private UserDaoDB userDao;
 
+	public Operation() {
+		userDao = new UserDaoDB("localhost", "3306", "cscdb", "root", "mysql2026");
+	}
 
-
+}
