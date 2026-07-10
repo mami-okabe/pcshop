@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
 
+import dao.PaymentDaoDB;
 import dao.ProductDaoDB;
 import dao.UserDaoDB;
 
@@ -89,7 +90,7 @@ public class Operation {
 			store.add(product);
 		}
 		/*
-
+		
 		// 商品追加
 		store.add(new Product("A110", "無線マウス", 2000));
 		store.add(new Product("A120", "薄型キーボード", 3600));
@@ -101,7 +102,7 @@ public class Operation {
 		store.add(new Product("A180", "小型ディスプレイ", 11000));
 		store.add(new Product("A190", "LED照明", 4200));
 		store.add(new Product("A200", "骨伝導イヤホン", 7800));
-*/
+		*/
 		return store;
 
 		//商品追加の置き換え
@@ -162,20 +163,32 @@ public class Operation {
 			//セッションに格納（精算済みデータ）
 			session.setAttribute("pay", cart);
 
+			//cartの内容をpaymentテーブルに登録する
+			List<Product> listProd = cart.getListProd();
+			//カート内の商品リスト List<Product> listProdの件数分paymentテーブルに登録
+			for (int i = 0; i < listProd.size(); i++) {
+				Product prod = listProd.get(i);
+			}
+
 			//カート情報の新規作成⇒セッションに格納
 			Cart newCart = new Cart(cart.getUserId(), new ArrayList<Product>());
 			session.setAttribute("cart", newCart);
+
 		}
 	}
 
 	//UserDaoDBに切り替える
 	private UserDaoDB userDao;
 	private ProductDaoDB productDao;
+	private PaymentDaoDB paymentDao;
 
 	public Operation() {
 		userDao = new UserDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
 
 		productDao = new ProductDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
+
+		paymentDao = new PaymentDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
+
 	}
 
 }
