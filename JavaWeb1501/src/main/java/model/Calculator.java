@@ -30,7 +30,6 @@ public class Calculator {
 		int total = calculator.calculate(productList);
 		//合計金額を出力する
 		System.out.println(total);
-
 	}
 
 	/**
