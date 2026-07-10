@@ -73,14 +73,21 @@ public class Cart {
 	 * カート内の商品の合計金額を取得する
 	 * @return 合計金額
 	 */
+	
 	public int getTotalPrice() {
-		int total = 0;
+		/*変更前
+		 * int total = 0;
 		for (Product prod : listProd) {
 			total += prod.getPrice();
 		}
+		}*/
 		
-		return total;
-	}
+	//変更後
+	Calculator calculator = new Calculator();
+	int total = calculator.calculate(listProd);
+	
+	return total;}
+	
 	
 	/**
 	 * カート内の商品の合計金額を文字列にして返す(３桁カンマ区切り＋円)
