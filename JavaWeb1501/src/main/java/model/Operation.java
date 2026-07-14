@@ -14,6 +14,21 @@ import dao.UserDaoDB;
  * @author M.Takahashi
  */
 public class Operation {
+
+	//UserDaoDBに切り替える
+	private UserDaoDB userDao;
+	private ProductDaoDB productDao;
+	private PaymentDaoDB paymentDao;
+
+	public Operation() {
+		userDao = new UserDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
+
+		productDao = new ProductDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
+
+		paymentDao = new PaymentDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
+
+	}
+
 	/**
 	 * ログイン時の処理
 	 * @param userId リクエストパラメータ
@@ -175,20 +190,6 @@ public class Operation {
 			session.setAttribute("cart", newCart);
 
 		}
-	}
-
-	//UserDaoDBに切り替える
-	private UserDaoDB userDao;
-	private ProductDaoDB productDao;
-	private PaymentDaoDB paymentDao;
-
-	public Operation() {
-		userDao = new UserDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
-
-		productDao = new ProductDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
-
-		paymentDao = new PaymentDaoDB("cscdb", "localhost", "3306", "root", "mysql2026");
-
 	}
 
 }

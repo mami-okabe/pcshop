@@ -16,14 +16,14 @@
 	<%@include file="header-navi.jsp"%>
 
 	<%
-		List<Product> listProd;
-		Store store = (Store) session.getAttribute("store");
-		if (store == null) {
-			listProd = new ArrayList<Product>();
-		} else {
-			listProd = store.getListProd();
-		}
-		if (listProd.size() > 0) {
+	List<Product> listProd;
+	Store store = (Store) session.getAttribute("store");
+	if (store == null) {
+		listProd = new ArrayList<Product>();
+	} else {
+		listProd = store.getListProd();
+	}
+	if (listProd.size() > 0) {
 	%>
 
 	<h2>商品選択</h2>
@@ -33,13 +33,13 @@
 			<th></th>
 			<th>商品ID</th>
 			<th>商品名</th>
-			<th>価格</th>
+			<th>価格（税込）</th>
 		</tr>
 
 		<%
-			for (int idx = 0; idx < listProd.size(); idx++) {
-				Product prod = listProd.get(idx);
-	%>
+		for (int idx = 0; idx < listProd.size(); idx++) {
+			Product prod = listProd.get(idx);
+		%>
 
 		<tr>
 			<td>
@@ -48,19 +48,19 @@
 						type="submit" value="選択">
 				</form>
 			</td>
-			<td><%=prod.getId() %></td>
-			<td><%=prod.getName() %></td>
-			<td><%=prod.getPriceString() %></td>
+			<td><%=prod.getId()%></td>
+			<td><%=prod.getName()%></td>
+			<td><%=prod.getTaxPriceString()%></td>
 		</tr>
 		<%
-			}
-	%>
-	
-		
+		}
+		%>
+
+
 	</table>
 
 	<%
-		}
+	}
 	%>
 
 </body>

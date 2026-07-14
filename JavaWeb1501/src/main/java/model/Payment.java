@@ -14,14 +14,16 @@ public class Payment {
 		
 		private int amount;
 		
-	
 		
-		
+			
 		/**
 		 * 価格
 		 */
 		private int price;
-
+		
+		
+	
+	
 		/******** コンストラクタ **************************************/
 		/**
 		 * フィールド初期化コンストラクタ
@@ -56,12 +58,19 @@ public class Payment {
 			return username;
 		}
 
+		
 		/**
 		 * @return price
 		 */
+		
+		
 		public int getPrice() {
 			return price;
 		}
+		
+		
+		
+		
 
 		/**
 		 * 価格を文字列で返す（３桁カンマ区切り＋"円"）

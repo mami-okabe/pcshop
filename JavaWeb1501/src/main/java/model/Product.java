@@ -10,18 +10,20 @@ public class Product {
 	 * 商品ID
 	 */
 	private String id;
-	
+
 	/**
 	 * 商品名
 	 */
 	private String name;
-	
+
 	/**
 	 * 価格
 	 */
 	private int price;
+	private int taxPrice;
 
 	/******** コンストラクタ **************************************/
+
 	/**
 	 * フィールド初期化コンストラクタ
 	 * @param id
@@ -32,6 +34,10 @@ public class Product {
 		this.id = id;
 		this.name = name;
 		this.price = price;
+
+		//★追加
+		this.taxPrice = (int) (price * 1.1);
+
 	}
 
 	/******** メソッド ******************************************/
@@ -53,16 +59,29 @@ public class Product {
 	/**
 	 * @return price
 	 */
+	/*
 	public int getPrice() {
 		return price;
+	}
+	*/
+
+	//★追加
+	public int getPrice() {
+		return taxPrice;
 	}
 
 	/**
 	 * 価格を文字列で返す（３桁カンマ区切り＋"円"）
 	 * @return 価格 + 円
+	 * 
 	 */
+
 	public String getPriceString() {
 		return String.format("%,d", price) + "円";
+	}
+
+	public String getTaxPriceString() {
+		return String.format("%,d", taxPrice) + "円";
 	}
 
 }

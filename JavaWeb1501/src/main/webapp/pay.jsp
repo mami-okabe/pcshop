@@ -44,7 +44,7 @@
 		<tr>
 			<th>商品ID</th>
 			<th>商品名</th>
-			<th>価格</th>
+			<th>価格（税込）</th>
 		</tr>
 		<%
 		for (Product prod : listProd) {
@@ -52,7 +52,7 @@
 		<tr>
 			<td><%=prod.getId()%></td>
 			<td><%=prod.getName()%></td>
-			<td><%=prod.getPriceString()%></td>
+			<td><%=prod.getTaxPriceString()%></td>
 		</tr>
 		<%
 		}
@@ -60,7 +60,7 @@
 	</table>
 	<br>
 	<p>
-		合計：<%=payData.getTotalPriceString()%>になります。
+		合計（税込）：<%=payData.getTotalPriceString()%>になります。
 	</p>
 	<%
 session.removeAttribute("pay");

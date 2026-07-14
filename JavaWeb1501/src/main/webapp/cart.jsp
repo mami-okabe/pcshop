@@ -35,7 +35,7 @@
 			<th></th>
 			<th>商品ID</th>
 			<th>商品名</th>
-			<th>価格</th>
+			<th>価格（税込）</th>
 		</tr>
 
 		<%
@@ -53,7 +53,7 @@
 
 			<td><%=prod.getId()%></td>
 			<td><%=prod.getName()%></td>
-			<td><%=prod.getPriceString()%></td>
+			<td><%=prod.getTaxPriceString()%></td>
 		</tr>
 
 		<%
@@ -61,9 +61,13 @@
 		%>
 	</table>
 	<br>
-	<form action="pay-servlet" method="post"> <input type="submit"
-		value="精算">
+	<p>
+		合計（税込）：<%=cart.getTotalPriceString()%>になります。
+	</p>
 	<br>
+	<br>
+	<form action="pay-servlet" method="post">
+		<input type="submit" value="精算"> <br>
 	</form>
 
 
