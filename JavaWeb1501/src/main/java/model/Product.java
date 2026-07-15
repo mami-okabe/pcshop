@@ -20,10 +20,15 @@ public class Product {
 	 * 価格
 	 */
 	private int price;
+	/*
 	private int taxPrice;
-	
+	*/
 	//★追加
-	private final double tax = 1.1;
+	/*
+	private final double TAX = 1.1;
+*/
+	
+
 
 	/******** コンストラクタ **************************************/
 
@@ -36,11 +41,16 @@ public class Product {
 	public Product(String id, String name, int price) {
 		this.id = id;
 		this.name = name;
-		this.price = price;
+		this.price = price;}
 
+		/*
 		//★追加
-		this.taxPrice = (int) (price * tax);
+		this.taxPrice = (int) (price * TAX);
 	}
+	*/
+	
+	
+	
 
 	/******** メソッド ******************************************/
 	/*--------------------getter/setter--------------------*/
@@ -61,34 +71,32 @@ public class Product {
 	/**
 	 * @return price
 	 */
-	/*
-	public int getPrice() {
-		return price;
-	}
-	*/
-
-	//★追加
+	
 	public int getPrice() {
 		return price;
 	}
 	
+	
 	//★追加
-		public int getTaxPrice() {
-			return taxPrice;
+	/*
+		public int getInTaxPrice() {
+			return inTaxPrice;
 		}
-
+*/
 	/**
 	 * 価格を文字列で返す（３桁カンマ区切り＋"円"）
 	 * @return 価格 + 円
 	 * 
 	 */
-
+/*
 	public String getPriceString() {
 		return String.format("%,d", price) + "円";
 	}
-
-	public String getTaxPriceString() {
-		return String.format("%,d", taxPrice) + "円";
+*/
+	public String getInTaxPriceString() {
+		Calculator calculator = new Calculator();
+		int inTaxPrice = calculator.inTaxPrice(price);
+		return String.format("%,d", inTaxPrice) + "円";
 	}
 
 }

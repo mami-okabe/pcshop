@@ -74,14 +74,22 @@ public class Cart {
 	 * @return 合計金額
 	 */
 
-	public int getInTaxTotalPrice() {
+	Calculator calculator = new Calculator();
+	public int inTaxTotalPrice() {
+	int totalPrice = calculator.calculate(listProd);
+	return totalPrice;
+	}
 		/*変更前
-		 */ int total = 0;
+		 */ 
+		/*int total = 0;
 		for (Product prod : listProd) {
-			total += prod.getTaxPrice();
+			total += prod.getInTaxPrice();
 		}
 		return total;
-	}
+	}*/
+
+		
+
 
 	//変更いらない
 	//変更後
@@ -97,7 +105,7 @@ public class Cart {
 	 * @return
 	 */
 	public String getInTaxTotalPriceString() {
-		return String.format("%,d", getInTaxTotalPrice()) + "円";
+		return String.format("%,d", inTaxTotalPrice()) + "円";
 	}
 
 }

@@ -13,7 +13,7 @@ public class Calculator {
 	/**
 	 * 消費税を設定します。
 	 */
-	final double tax = 1.1;
+	final static double TAX = 1.1;
 
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
@@ -37,8 +37,13 @@ public class Calculator {
 	 * @param price 消費税抜きの商品金額
 	 * @return 
 	 */
-	public int plusTax(int price) {
-		return (int) (price * tax);
+	public int inTaxPrice(int price) {
+		return (int) (price * TAX);
+	}
+	
+	//呼び出し方追加（なくてもＯＫ）
+	public int plusTax(Product product) {
+		return (int)(product.getPrice() * TAX);
 	}
 
 	/**
@@ -49,7 +54,7 @@ public class Calculator {
 	public int calculate(List<Product> listProd) {
 		int totalPrice = 0;
 		for (Product product : listProd) {
-			totalPrice += plusTax(product.getPrice());
+			totalPrice += inTaxPrice(product.getPrice());
 			/*
 			int price = product.getPrice();
 			totalPrice += plusTax(price);
@@ -67,4 +72,9 @@ public class Calculator {
 			*/
 		return totalPrice;
 	}
-}
+	
+	//呼び出し方追加（なくてＯＫ）
+	public int calculate(Product product) {
+		return plusTax(product);}
+		
+	}

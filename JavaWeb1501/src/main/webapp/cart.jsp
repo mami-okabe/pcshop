@@ -53,7 +53,7 @@
 
 			<td><%=prod.getId()%></td>
 			<td><%=prod.getName()%></td>
-			<td><%=prod.getTaxPriceString()%></td>
+			<td><%=prod.getInTaxPriceString()%></td>
 		</tr>
 
 		<%
