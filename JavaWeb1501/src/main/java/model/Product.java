@@ -21,6 +21,9 @@ public class Product {
 	 */
 	private int price;
 	private int taxPrice;
+	
+	//★追加
+	private final double tax = 1.1;
 
 	/******** コンストラクタ **************************************/
 
@@ -36,8 +39,7 @@ public class Product {
 		this.price = price;
 
 		//★追加
-		this.taxPrice = (int) (price * 1.1);
-
+		this.taxPrice = (int) (price * tax);
 	}
 
 	/******** メソッド ******************************************/
@@ -67,8 +69,13 @@ public class Product {
 
 	//★追加
 	public int getPrice() {
-		return taxPrice;
+		return price;
 	}
+	
+	//★追加
+		public int getTaxPrice() {
+			return taxPrice;
+		}
 
 	/**
 	 * 価格を文字列で返す（３桁カンマ区切り＋"円"）

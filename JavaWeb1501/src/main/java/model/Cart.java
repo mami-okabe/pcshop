@@ -74,11 +74,11 @@ public class Cart {
 	 * @return 合計金額
 	 */
 
-	public int getTotalPrice() {
+	public int getInTaxTotalPrice() {
 		/*変更前
 		 */ int total = 0;
 		for (Product prod : listProd) {
-			total += prod.getPrice();
+			total += prod.getTaxPrice();
 		}
 		return total;
 	}
@@ -96,8 +96,8 @@ public class Cart {
 	 * カート内の商品の合計金額を文字列にして返す(３桁カンマ区切り＋円)
 	 * @return
 	 */
-	public String getTotalPriceString() {
-		return String.format("%,d", getTotalPrice()) + "円";
+	public String getInTaxTotalPriceString() {
+		return String.format("%,d", getInTaxTotalPrice()) + "円";
 	}
 
 }

@@ -62,7 +62,7 @@
 	</table>
 	<br>
 	<p>
-		合計（税込）：<%=cart.getTotalPriceString()%>になります。
+		合計（税込）：<%=cart.getInTaxTotalPriceString()%>になります。
 	</p>
 	<br>
 	<br>

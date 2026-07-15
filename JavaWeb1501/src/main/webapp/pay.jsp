@@ -60,7 +60,7 @@
 	</table>
 	<br>
 	<p>
-		合計（税込）：<%=payData.getTotalPriceString()%>になります。
+		合計（税込）：<%=payData.getInTaxTotalPriceString()%>になります。
 	</p>
 	<%
 session.removeAttribute("pay");
