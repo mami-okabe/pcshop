@@ -52,6 +52,10 @@ public class Product {
 	
 	
 
+
+		// TODO 自動生成されたコンストラクター・スタブ
+	
+
 	/******** メソッド ******************************************/
 	/*--------------------getter/setter--------------------*/
 	/**
@@ -88,15 +92,15 @@ public class Product {
 	 * @return 価格 + 円
 	 * 
 	 */
-/*
+
 	public String getPriceString() {
 		return String.format("%,d", price) + "円";
 	}
-*/
+
+	
 	public String getInTaxPriceString() {
 		Calculator calculator = new Calculator();
 		int inTaxPrice = calculator.inTaxPrice(price);
 		return String.format("%,d", inTaxPrice) + "円";
 	}
-
 }
